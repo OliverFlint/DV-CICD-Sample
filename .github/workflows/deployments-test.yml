@@ -6,7 +6,17 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
+        run: echo Hello, Building stuff!
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          path: README.md
   deployment-dev:
+    needs: [build]
     runs-on: ubuntu-latest
     environment: dev
     concurrency: dev-group
@@ -14,6 +24,7 @@ jobs:
       - name: deploy
         run: echo Hello, World! Deploying to Dev
   deployment-test:
+    needs: [build, deployment-dev]
     runs-on: ubuntu-latest
     environment: test
     concurrency: test-group
@@ -21,6 +32,7 @@ jobs:
       - name: deploy
         run: echo Hello, World! Deploying to Test
   deployment-prod:
+    needs: [build, deployment-test]
     runs-on: ubuntu-latest
     environment: prod
     concurrency: prod-group
