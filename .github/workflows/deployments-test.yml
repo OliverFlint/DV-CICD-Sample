@@ -1,0 +1,30 @@
+name: Deployments Test
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  deployment-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    concurrency: dev-group
+    steps:
+      - name: deploy
+        run: echo Hello, World! Deploying to Dev
+  deployment-test:
+    runs-on: ubuntu-latest
+    environment: test
+    concurrency: test-group
+    steps:
+      - name: deploy
+        run: echo Hello, World! Deploying to Test
+  deployment-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    concurrency: prod-group
+    steps:
+      - name: deploy
+        run: echo Hello, World! Deploying to Prod
+
