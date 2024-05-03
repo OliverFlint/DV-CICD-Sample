@@ -9,12 +9,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.4
       - name: build
         run: echo Hello, Building stuff!
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.3.3
         with:
-          path: README.md
+          path: /README.md
+          if-no-files-found: error
   deployment-dev:
     needs: [build]
     runs-on: ubuntu-latest
