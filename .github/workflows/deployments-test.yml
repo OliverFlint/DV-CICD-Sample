@@ -13,10 +13,12 @@ jobs:
         uses: actions/checkout@v4.1.4
       - name: build
         run: echo Hello, Building stuff!
+      - name: list files
+        run: ls
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.3.3
         with:
-          path: /README.md
+          path: README.md
           if-no-files-found: error
   deployment-dev:
     needs: [build]
