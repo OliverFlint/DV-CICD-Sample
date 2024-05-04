@@ -8,4 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Read card
-      run: echo ${{ github.event.issue.labels }}
+      run: |
+        labels=${{ github.event.issue.labels }}
+        for label in labels
+        do
+          echo label
+        done
