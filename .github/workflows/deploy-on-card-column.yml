@@ -9,8 +9,6 @@ jobs:
     steps:
     - name: Read card
       run: |
-        labels=${{ github.event.issue.labels }}
-        for label in labels
-        do
-          echo $label
+        for i in "${{ github.event.issue.labels[@] }}"; do
+          echo "$i"
         done
