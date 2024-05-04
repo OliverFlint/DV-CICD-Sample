@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Read card
-      run: echo ${{inputs.issue}}
+      run: echo ${{ github.event.issue.labels }}
