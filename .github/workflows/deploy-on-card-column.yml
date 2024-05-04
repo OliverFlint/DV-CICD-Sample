@@ -1,6 +1,6 @@
 name: Deploy on card column
 on:
-  project_card:
+  issues:
     types: [edited]
 
 jobs:
