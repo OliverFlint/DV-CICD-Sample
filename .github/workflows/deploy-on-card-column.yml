@@ -1,0 +1,9 @@
+name: Deploy on card column
+on: [project_card]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Read card
+      run: echo ${{inputs}}
