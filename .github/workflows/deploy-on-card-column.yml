@@ -1,5 +1,7 @@
 name: Deploy on card column
-on: [project_card]
+on:
+  project_card:
+    types: [edited]
 
 jobs:
   deploy:
