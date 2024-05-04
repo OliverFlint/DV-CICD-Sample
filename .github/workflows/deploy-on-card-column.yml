@@ -1,7 +1,7 @@
 name: Deploy on card column
 on:
   issues:
-    types: [edited]
+    types: [edited, labeled]
 
 jobs:
   deploy:
