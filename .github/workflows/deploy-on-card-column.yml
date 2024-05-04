@@ -12,5 +12,5 @@ jobs:
         labels=${{ github.event.issue.labels }}
         for label in labels
         do
-          echo label
+          echo $label
         done
