@@ -1,4 +1,4 @@
-name: Deployments Test
+name: Deploy Release
 on:
   release:
 jobs:
