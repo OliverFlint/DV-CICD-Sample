@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 jobs:
   deployment-dev:
+    if: ${{ github.event_name != 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     environment: dev
     concurrency: dev-group
