@@ -2,6 +2,7 @@ name: Deploy Release
 on:
   release:
     types: [published]
+  workflow_dispatch:
 jobs:
   deployment-dev:
     runs-on: ubuntu-latest
