@@ -1,6 +1,7 @@
 name: Deploy Release
 on:
   release:
+    type: [create]
 jobs:
   deployment-dev:
     runs-on: ubuntu-latest
