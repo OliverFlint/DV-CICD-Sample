@@ -16,7 +16,7 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')"
       - name: create release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
           tag: 'Version-${{ steps.date.outputs.date }}'
         run: |
           gh release create "$tag" \
