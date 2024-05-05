@@ -11,10 +11,13 @@ jobs:
         run: echo Hello, Building stuff!
       - name: list files
         run: ls
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')"
       - name: create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
+          tag: Version ${{ steps.date.outputs.date }}
         run: |
           gh release create "$tag" \
               --repo="$GITHUB_REPOSITORY" \
