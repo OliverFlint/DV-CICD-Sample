@@ -6,7 +6,7 @@ on:
     types: [published]
   workflow_dispatch:
 env:
-  tag: ${{ github.event.release.tag_name || toJSON(github.event) || github.event.ref }}
+  tag: ${{ github.event.release.tag_name || github.ref_name || github.event.ref }}
 jobs:
   download-release:
     runs-on: ubuntu-latest
