@@ -14,7 +14,9 @@ jobs:
       - name: download
         run: gh release download ${{ github.event.release.tag_name }} --output ./release --repo="$GITHUB_REPOSITORY"
       - name: list release content
-        run: ls
+        run: |
+          cd release
+          ls
   deployment-dev:
     if: ${{ github.event_name != 'workflow_dispatch' }}
     needs: [download-release]
