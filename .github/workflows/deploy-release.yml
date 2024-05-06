@@ -13,10 +13,6 @@ jobs:
     steps:
       - name: download
         run: gh release download ${{ github.event.release.tag_name }} --dir ./release --repo="$GITHUB_REPOSITORY"
-      - name: list release content
-        run: |
-          cd release
-          ls
   deployment-dev:
     if: ${{ github.event_name != 'workflow_dispatch' }}
     needs: [download-release]
@@ -24,6 +20,10 @@ jobs:
     environment: dev
     concurrency: dev-group
     steps:
+      - name: list release content
+        run: |
+          cd release
+          ls
       - name: deploy
         run: echo Hello, World! Deploying to Dev
   deployment-test:
@@ -33,6 +33,10 @@ jobs:
     environment: test
     concurrency: test-group
     steps:
+      - name: list release content
+        run: |
+          cd release
+          ls
       - name: deploy
         run: echo Hello, World! Deploying to Test
   deployment-prod:
@@ -41,6 +45,10 @@ jobs:
     environment: prod
     concurrency: prod-group
     steps:
+      - name: list release content
+        run: |
+          cd release
+          ls
       - name: deploy
         run: echo Hello, World! Deploying to Prod
 
