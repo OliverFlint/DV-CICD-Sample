@@ -12,11 +12,12 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: download
-        run: gh release download ${{ github.event.release.tag_name }} --output ./release
+        run: gh release download ${{ github.event.release.tag_name }} --output ./release --repo="$GITHUB_REPOSITORY"
       - name: list release content
         run: ls ./release
   deployment-dev:
     if: ${{ github.event_name != 'workflow_dispatch' }}
+    needs: [download-release]
     runs-on: ubuntu-latest
     environment: dev
     concurrency: dev-group
@@ -25,6 +26,7 @@ jobs:
         run: echo Hello, World! Deploying to Dev
   deployment-test:
     if: ${{ github.event_name == 'workflow_dispatch' }}
+    needs: [download-release]
     runs-on: ubuntu-latest
     environment: test
     concurrency: test-group
@@ -32,7 +34,7 @@ jobs:
       - name: deploy
         run: echo Hello, World! Deploying to Test
   deployment-prod:
-    needs: [deployment-test]
+    needs: [deployment-test, download-release]
     runs-on: ubuntu-latest
     environment: prod
     concurrency: prod-group
